@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">turiac_skuchange_productchanges_listing.turiac_skuchange_productchanges_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>turiac_skuchange_productchanges_columns</spinner>
+		<deps>
+			<dep>turiac_skuchange_productchanges_listing.turiac_skuchange_productchanges_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="turiac_skuchange_productchanges_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">productchanges_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Turiac_SkuChange::ProductChanges</aclResource>
+		<dataProvider name="turiac_skuchange_productchanges_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>productchanges_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="turiac_skuchange_productchanges_columns">
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>productchanges_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="productchanges_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="sku">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">sku</label>
+			</settings>
+		</column>
+		<column name="store">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">store</label>
+			</settings>
+		</column>
+		<column name="source">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">source</label>
+			</settings>
+		</column>
+		<column name="attribute">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">attribute</label>
+			</settings>
+		</column>
+		<column name="value">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">value</label>
+			</settings>
+		</column>
+		<column name="time">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">time</label>
+			</settings>
+		</column>
+	</columns>
+</listing>

@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="source_items_save_after">
+		<observer name="turiac_skuchange_observer_source_itemssaveafter_source_items_save_after" instance="Turiac\SkuChange\Observer\Source\ItemsSaveAfter"/>
+	</event>
+	<event name="inventory_source_deduction">
+		<observer name="turiac_skuchange_observer_inventory_sourcededuction_inventory_source_deduction" instance="Turiac\SkuChange\Observer\Inventory\SourceDeduction"/>
+	</event>
+	<event name="catalog_product_save_after">
+		<observer name="turiac_skuchange_observer_catalog_productsaveafter_catalog_product_save_after" instance="Turiac\SkuChange\Observer\Catalog\ProductSaveAfter"/>
+	</event>
+</config>

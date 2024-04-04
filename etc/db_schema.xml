@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="turiac_skuchange_productchanges" resource="default" engine="innodb" comment="turiac_skuchange_productchanges Table">
+		<column xsi:type="int" name="productchanges_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="productchanges_id"/>
+		</constraint>
+		<column name="sku" nullable="true" xsi:type="text" comment="sku"/>
+		<column name="store" nullable="true" xsi:type="text" comment="store"/>
+		<column name="source" nullable="true" xsi:type="text" comment="source"/>
+		<column name="attribute" nullable="true" xsi:type="text" comment="attribute"/>
+		<column name="value" nullable="true" xsi:type="text" comment="value"/>
+		<column name="time" nullable="true" xsi:type="timestamp" comment="time"/>
+	</table>
+</schema>

@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Turiac\SkuChange\Api\ProductChangesRepositoryInterface" type="Turiac\SkuChange\Model\ProductChangesRepository"/>
+	<preference for="Turiac\SkuChange\Api\Data\ProductChangesInterface" type="Turiac\SkuChange\Model\ProductChanges"/>
+	<preference for="Turiac\SkuChange\Api\Data\ProductChangesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Turiac\SkuChange\Model\ResourceModel\ProductChanges\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">turiac_skuchange_productchanges</argument>
+			<argument name="resourceModel" xsi:type="string">Turiac\SkuChange\Model\ResourceModel\ProductChanges\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="turiac_skuchange_productchanges_listing_data_source" xsi:type="string">Turiac\SkuChange\Model\ResourceModel\ProductChanges\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<type name="Turiac\SkuChange\Observer\Catalog\ProductSaveAfter">
+		<arguments>
+			<argument name="productChangesQueue" xsi:type="object">Turiac\SkuChange\Model\ProductChangesQueue\MagentoProductChangesQueue</argument>
+			<argument name="fields" xsi:type="array">
+				<item name="description" xsi:type="string">description</item>
+				<item name="short_description" xsi:type="string">short_description</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<type name="Turiac\SkuChange\Model\ProductChangesQueue\ProductChangeHandler">
+		<arguments>
+			<argument name="apiClient" xsi:type="object">Turiac\SkuChange\Model\ProductApiClient\ProductApiClient</argument>
+			<argument name="dataTransformer" xsi:type="object">Turiac\SkuChange\Model\ProductApiClient\ProductDataTransformer</argument>
+		</arguments>
+	</type>
+</config>

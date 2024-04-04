@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="catalog" translate="label" sortOrder="999">
+			<label>catalog</label>
+		</tab>
+		<section id="feed" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+			<label>Feeds</label>
+			<tab>catalog</tab>
+			<resource>Turiac_SkuChange::config_turiac_skuchange</resource>
+			<group id="changes" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>Catalog Product Changes</label>
+				<field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable</label>
+					<comment>Enable Feed for changes in products data</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="enable_stock_tracking" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable Stock Status Changes</label>
+					<comment>Send stock qty if it was updated</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enable">1</field>
+					</depends>
+				</field>
+
+				<field id="product_attributes" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Product Attributes</label>
+					<frontend_model>Turiac\SkuChange\Block\Adminhtml\Form\Field\ProductAttributesRows</frontend_model>
+					<backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+					<comment><![CDATA[Add here new pair Magento Product Attribute - Api Product]]></comment>
+					<depends>
+						<field id="enable">1</field>
+					</depends>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>
