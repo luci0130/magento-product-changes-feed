@@ -9,23 +9,23 @@ namespace Turiac\SkuChange\Api\Data;
 
 interface ProductChangesInterface
 {
-
-    const SOURCE = 'source';
-    const ATTRIBUTE = 'attribute';
     const PRODUCTCHANGES_ID = 'productchanges_id';
-    const STORE = 'store';
-    const TIME = 'time';
-    const SKU = 'sku';
-    const VALUE = 'value';
+    const SKU               = 'sku';
+    const STORE             = 'store';
+    const UPDATEDDATA       = 'updatedData';
+    const SOURCE            = 'source';
+    const TIME              = 'time';
 
     /**
      * Get productchanges_id
+     *
      * @return string|null
      */
     public function getProductchangesId();
 
     /**
      * Set productchanges_id
+     *
      * @param string $productchangesId
      * @return \Turiac\SkuChange\ProductChanges\Api\Data\ProductChangesInterface
      */
@@ -33,12 +33,14 @@ interface ProductChangesInterface
 
     /**
      * Get sku
+     *
      * @return string|null
      */
     public function getSku();
 
     /**
      * Set sku
+     *
      * @param string $sku
      * @return \Turiac\SkuChange\ProductChanges\Api\Data\ProductChangesInterface
      */
@@ -46,12 +48,14 @@ interface ProductChangesInterface
 
     /**
      * Get store
+     *
      * @return string|null
      */
     public function getStore();
 
     /**
      * Set store
+     *
      * @param string $store
      * @return \Turiac\SkuChange\ProductChanges\Api\Data\ProductChangesInterface
      */
@@ -59,54 +63,46 @@ interface ProductChangesInterface
 
     /**
      * Get source
+     *
      * @return string|null
      */
     public function getSource();
 
     /**
      * Set source
+     *
      * @param string $source
      * @return \Turiac\SkuChange\ProductChanges\Api\Data\ProductChangesInterface
      */
     public function setSource($source);
 
     /**
-     * Get attribute
+     * Get updatedData
+     *
      * @return string|null
      */
-    public function getAttribute();
+    public function getUpdatedData();
 
     /**
-     * Set attribute
-     * @param string $attribute
+     * Set updatedData
+     *
+     * @param string $updatedData
      * @return \Turiac\SkuChange\ProductChanges\Api\Data\ProductChangesInterface
      */
-    public function setAttribute($attribute);
-
-    /**
-     * Get value
-     * @return string|null
-     */
-    public function getValue();
-
-    /**
-     * Set value
-     * @param string $value
-     * @return \Turiac\SkuChange\ProductChanges\Api\Data\ProductChangesInterface
-     */
-    public function setValue($value);
+    public function setUpdatedData($updatedData);
 
     /**
      * Get time
+     *
      * @return string|null
      */
     public function getTime();
 
     /**
      * Set time
+     *
      * @param string $time
      * @return \Turiac\SkuChange\ProductChanges\Api\Data\ProductChangesInterface
      */
     public function setTime($time);
 }
-

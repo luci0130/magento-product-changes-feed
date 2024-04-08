@@ -6,9 +6,9 @@ class ProductDataTransformer implements DataTransformerInterface
 {
     public function transform(array $data): array
     {
-        // Implement the transformation logic here
-        // This is a basic example that just passes data through
-        // You would replace this with actual transformation logic
+        if(isset($data['updatedData'])){
+            $data['updatedData'] = json_decode($data['updatedData'], true);
+        }
         return $data;
     }
 }

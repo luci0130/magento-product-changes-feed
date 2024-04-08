@@ -7,13 +7,12 @@ declare(strict_types=1);
 
 namespace Turiac\SkuChange\Api;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-
 interface ProductChangesRepositoryInterface
 {
 
     /**
      * Save ProductChanges
+     *
      * @param \Turiac\SkuChange\Api\Data\ProductChangesInterface $productChanges
      * @return \Turiac\SkuChange\Api\Data\ProductChangesInterface
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -23,7 +22,15 @@ interface ProductChangesRepositoryInterface
     );
 
     /**
+     * Create new ProductChanges entity
+     *
+     * @return \Turiac\SkuChange\Api\Data\ProductChangesInterface
+     */
+    public function create();
+
+    /**
      * Retrieve ProductChanges
+     *
      * @param string $productchangesId
      * @return \Turiac\SkuChange\Api\Data\ProductChangesInterface
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -32,6 +39,7 @@ interface ProductChangesRepositoryInterface
 
     /**
      * Retrieve ProductChanges matching the specified criteria.
+     *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
      * @return \Turiac\SkuChange\Api\Data\ProductChangesSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -42,6 +50,7 @@ interface ProductChangesRepositoryInterface
 
     /**
      * Delete ProductChanges
+     *
      * @param \Turiac\SkuChange\Api\Data\ProductChangesInterface $productChanges
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -52,6 +61,7 @@ interface ProductChangesRepositoryInterface
 
     /**
      * Delete ProductChanges by ID
+     *
      * @param string $productchangesId
      * @return bool true on success
      * @throws \Magento\Framework\Exception\NoSuchEntityException

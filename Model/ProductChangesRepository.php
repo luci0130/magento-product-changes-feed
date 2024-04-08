@@ -87,37 +87,40 @@ class ProductChangesRepository implements ProductChangesRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function get($productChangesId)
-    {
-        $productChanges = $this->productChangesFactory->create();
-        $this->resource->load($productChanges, $productChangesId);
-        if (!$productChanges->getId()) {
-            throw new NoSuchEntityException(__('ProductChanges with id "%1" does not exist.', $productChangesId));
+    public function getList(
+        \Magento\Framework\Api\SearchCriteriaInterface $criteria
+    ) {
+        $collection = $this->productChangesCollectionFactory->create();
+
+        $this->collectionProcessor->process($criteria, $collection);
+
+        $searchResults = $this->searchResultsFactory->create();
+        $searchResults->setSearchCriteria($criteria);
+
+        $items = [];
+        foreach ($collection as $model) {
+            $items[] = $model;
         }
-        return $productChanges;
+
+        $searchResults->setItems($items);
+        $searchResults->setTotalCount($collection->getSize());
+        return $searchResults;
     }
 
     /**
      * @inheritDoc
      */
-    public function getList(
-        \Magento\Framework\Api\SearchCriteriaInterface $criteria
-    ) {
-        $collection = $this->productChangesCollectionFactory->create();
-        
-        $this->collectionProcessor->process($criteria, $collection);
-        
-        $searchResults = $this->searchResultsFactory->create();
-        $searchResults->setSearchCriteria($criteria);
-        
-        $items = [];
-        foreach ($collection as $model) {
-            $items[] = $model;
-        }
-        
-        $searchResults->setItems($items);
-        $searchResults->setTotalCount($collection->getSize());
-        return $searchResults;
+    public function create()
+    {
+        return $this->productChangesFactory->create();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function deleteById($productChangesId)
+    {
+        return $this->delete($this->get($productChangesId));
     }
 
     /**
@@ -141,9 +144,14 @@ class ProductChangesRepository implements ProductChangesRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function deleteById($productChangesId)
+    public function get($productChangesId)
     {
-        return $this->delete($this->get($productChangesId));
+        $productChanges = $this->productChangesFactory->create();
+        $this->resource->load($productChanges, $productChangesId);
+        if (!$productChanges->getId()) {
+            throw new NoSuchEntityException(__('ProductChanges with id "%1" does not exist.', $productChangesId));
+        }
+        return $productChanges;
     }
 }
 

@@ -66,16 +66,10 @@
 				<label translate="true">source</label>
 			</settings>
 		</column>
-		<column name="attribute">
+		<column name="updatedData">
 			<settings>
 				<filter>text</filter>
-				<label translate="true">attribute</label>
-			</settings>
-		</column>
-		<column name="value">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">value</label>
+				<label translate="true">updatedData</label>
 			</settings>
 		</column>
 		<column name="time">

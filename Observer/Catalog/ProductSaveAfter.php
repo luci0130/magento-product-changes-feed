@@ -9,11 +9,11 @@ namespace Turiac\SkuChange\Observer\Catalog;
 
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product as CatalogProduct;
-use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
-use Turiac\SkuChange\Model\ProductChangesQueue\ProductChangesQueueInterface;
+use Turiac\SkuChange\Model\ProductChangesConfig;
+use Turiac\SkuChange\Model\Service\SaveProductChangesInterface;
 
 class ProductSaveAfter implements ObserverInterface
 {
@@ -23,60 +23,59 @@ class ProductSaveAfter implements ObserverInterface
     protected $logger;
 
     /**
-     * @var array
+     * @var SaveProductChangesInterface
      */
-    private $fields;
+    private $productSaveChangesService;
 
     /**
-     * @var ProductChangesQueueInterface
+     * @var ProductChangesConfig
      */
-    private $productChangesQueue;
-
+    private $productChangesConfig;
 
     /**
      * Product constructor.
      *
      * @param LoggerInterface $logger
-     * @param ProductChangesQueueInterface $productChangesQueue
-     * @param array $fields
+     * @param SaveProductChangesInterface $productSaveChangesService
+     * @param ProductChangesConfig $productChangesConfig
      */
     public function __construct(
         LoggerInterface $logger,
-        ProductChangesQueueInterface $productChangesQueue,
-        array $fields
+        SaveProductChangesInterface $productSaveChangesService,
+        ProductChangesConfig $productChangesConfig
     ) {
         $this->logger = $logger;
-        $this->fields = $fields;
-        $this->productChangesQueue = $productChangesQueue;
+        $this->productChangesConfig = $productChangesConfig;
+        $this->productSaveChangesService = $productSaveChangesService;
     }
-
 
     public function execute(Observer $observer): void
     {
-        /** @var Product $product */
-        $product = $observer->getEvent()->getProduct();
-
-        if ($product instanceof CatalogProduct) {
-            foreach ($this->fields as $field) {
-                if (!$product->dataHasChangedFor($field)) {
-                    continue;
-                }
-                $this->queueProductChangeInformation($product, $field);
+        try {
+            if (!$this->productChangesConfig->isEnabled()) {
+                return;
             }
+
+            /** @var Product $product */
+            $product = $observer->getEvent()->getProduct();
+
+            $allowedFields = $this->productChangesConfig->getFields();
+            $fields = [];
+
+            if ($product instanceof CatalogProduct) {
+                foreach ($allowedFields as $field) {
+                    if ($product->dataHasChangedFor($field)) {
+                        $fields[] = $field;
+                    }
+                }
+
+                if (!empty($fields)) {
+                    $this->productSaveChangesService->saveProductChanges($product, $fields);
+                }
+            }
+        } catch (\Throwable $exception) {
+            $this->logger->error('Error processing product save after event: ' . $exception->getMessage());
         }
-    }
-
-    private function queueProductChangeInformation(Product $product, $field): void
-    {
-        $data = [
-            'sku'       => $product->getSku(),
-            'field'     => $field,
-            'newValue'  => $product->getData($field),
-            'store_id'  => $product->getStoreId(), // Include the store ID
-            'timestamp' => time(),
-        ];
-
-        $this->productChangesQueue->addToQueue($data);
     }
 }
 

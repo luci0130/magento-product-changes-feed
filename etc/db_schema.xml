@@ -8,8 +8,7 @@
 		<column name="sku" nullable="true" xsi:type="text" comment="sku"/>
 		<column name="store" nullable="true" xsi:type="text" comment="store"/>
 		<column name="source" nullable="true" xsi:type="text" comment="source"/>
-		<column name="attribute" nullable="true" xsi:type="text" comment="attribute"/>
-		<column name="value" nullable="true" xsi:type="text" comment="value"/>
+		<column name="updatedData" nullable="true" xsi:type="text" comment="updatedData"/>
 		<column name="time" nullable="true" xsi:type="timestamp" comment="time"/>
 	</table>
 </schema>

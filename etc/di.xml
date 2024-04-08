@@ -3,6 +3,10 @@
 	<preference for="Turiac\SkuChange\Api\ProductChangesRepositoryInterface" type="Turiac\SkuChange\Model\ProductChangesRepository"/>
 	<preference for="Turiac\SkuChange\Api\Data\ProductChangesInterface" type="Turiac\SkuChange\Model\ProductChanges"/>
 	<preference for="Turiac\SkuChange\Api\Data\ProductChangesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Turiac\SkuChange\Model\Service\SaveProductChangesInterface" type="Turiac\SkuChange\Model\Service\SaveProductChanges"/>
+	<preference for="Turiac\SkuChange\Model\ProductChangesQueue\ProductChangesQueueInterface" type="Turiac\SkuChange\Model\ProductChangesQueue\MagentoProductChangesQueue"/>
+	<preference for="Turiac\SkuChange\Model\ProductApiClient\ProductApiClientInterface" type="Turiac\SkuChange\Model\ProductApiClient\ProductApiClient"/>
+	<preference for="Turiac\SkuChange\Model\ProductApiClient\DataTransformerInterface" type="Turiac\SkuChange\Model\ProductApiClient\ProductDataTransformer"/>
 	<virtualType name="Turiac\SkuChange\Model\ResourceModel\ProductChanges\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">turiac_skuchange_productchanges</argument>

@@ -22,9 +22,8 @@ class ProductChangeHandler
     {
         $data = json_decode($message, true);
         if (is_array($data)) {
-            // Transform the data before sending it
             $transformedData = $this->dataTransformer->transform($data);
-            $this->apiClient->sendProductChange($transformedData);
+            return $this->apiClient->sendProductChange($transformedData);
         } else {
             // Handle error or invalid data format
         }

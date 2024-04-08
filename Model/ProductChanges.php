@@ -88,33 +88,17 @@ class ProductChanges extends AbstractModel implements ProductChangesInterface
     /**
      * @inheritDoc
      */
-    public function getAttribute()
+    public function getUpdatedData()
     {
-        return $this->getData(self::ATTRIBUTE);
+        return $this->getData(self::UPDATEDDATA);
     }
 
     /**
      * @inheritDoc
      */
-    public function setAttribute($attribute)
+    public function setUpdatedData($updatedData)
     {
-        return $this->setData(self::ATTRIBUTE, $attribute);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getValue()
-    {
-        return $this->getData(self::VALUE);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setValue($value)
-    {
-        return $this->setData(self::VALUE, $value);
+        return $this->setData(self::UPDATEDDATA, $updatedData);
     }
 
     /**
@@ -133,4 +117,3 @@ class ProductChanges extends AbstractModel implements ProductChangesInterface
         return $this->setData(self::TIME, $time);
     }
 }
-
