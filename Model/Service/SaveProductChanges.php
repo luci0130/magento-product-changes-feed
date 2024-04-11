@@ -116,8 +116,12 @@ class SaveProductChanges implements SaveProductChangesInterface
     protected function getChangedAttributes(Product $product, array $fields): array
     {
         $data = [];
-        foreach ($fields as $field) {
-            $data[$field] = $product->getData($field);
+        foreach ($fields as $key => $field) {
+            if (is_numeric($key)) {
+                $data[$field] = $product->getData($field);
+            } else {
+                $data[$key] = $field;
+            }
         }
 
         return $data;
