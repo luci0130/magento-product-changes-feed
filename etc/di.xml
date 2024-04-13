@@ -37,4 +37,15 @@
 			<argument name="dataTransformer" xsi:type="object">Turiac\SkuChange\Model\ProductApiClient\ProductDataTransformer</argument>
 		</arguments>
 	</type>
+
+	<type name="Magento\CatalogInventory\Model\Stock\StockItemRepository">
+		<plugin name="turiac_sku_change_stock_item_save_after"
+				type="Turiac\SkuChange\Plugin\StockItemSaveAfterPlugin"
+				sortOrder="10" />
+	</type>
+
+	<type name="Magento\Inventory\Model\SourceItem\Command\DecrementSourceItemQty">
+		<plugin name="send_update_after_decrement_source_item_quantity"
+				type="Turiac\SkuChange\Plugin\SendUpdateAfterDecrementSourceItemQty"/>
+	</type>
 </config>
