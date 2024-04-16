@@ -1,7 +1,5 @@
 # Mage2 Module Turiac SkuChange
 
-    ``turiac/module-skuchange``
-
  - [Main Functionalities](#markdown-header-main-functionalities)
  - [Installation](#markdown-header-installation)
  - [Configuration](#markdown-header-configuration)
