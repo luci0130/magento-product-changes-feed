@@ -82,13 +82,15 @@ Plugins:
 
 ### Configuration
 
-
+![image](https://github.com/luci0130/magento-product-changes-feed/assets/106905746/2c45b2d0-c19d-43a8-88a9-30193721aadc)
 
 ### Product Changes Grid
 
-
+![image](https://github.com/luci0130/magento-product-changes-feed/assets/106905746/7bb789cb-2c9d-450a-b0e4-b71317efe95b)
 
 ### API call
+
+![image](https://github.com/luci0130/magento-product-changes-feed/assets/106905746/bbed7b68-e18c-47ed-891e-067d5f697491)
 
 
 ### Another Solution(not implemented)
